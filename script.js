@@ -1,87 +1,119 @@
 const addBtn = document.querySelector(".add-btn");
 
-// Add button function ===============================
+// Load saved students on page load
+window.addEventListener("DOMContentLoaded", () => {
+  const storedStudents = JSON.parse(localStorage.getItem("students")) || [];
+  storedStudents.forEach((student) => displayStudent(student));
+});
 
+// Add student
 addBtn.addEventListener("click", function () {
-  const nameInput = document.querySelector("#student-name").value;
-  const idInput = document.querySelector("#student-id").value;
-  const emailInput = document.querySelector("#email-id").value;
-  const numInput = document.querySelector("#contact-no").value;
+  const nameInput = document.querySelector("#student-name").value.trim();
+  const idInput = document.querySelector("#student-id").value.trim();
+  const emailInput = document.querySelector("#email-id").value.trim();
+  const numInput = document.querySelector("#contact-no").value.trim();
 
-  //   validating forms ================================
-
+  // Validation
   const validation = document.querySelector(".validation");
-  validation.innerHTML = ""; // remove previous validation
+  validation.innerHTML = "";
 
   const validationIcon = document.createElement("ion-icon");
   const validationMsg = document.createElement("div");
-
   validationIcon.classList.add("validation-icon");
   validationMsg.classList.add("validation-msg");
+  validation.append(validationIcon, validationMsg);
 
-  validation.appendChild(validationIcon);
-  validation.appendChild(validationMsg);
-
-  if (
-    nameInput === "" ||
-    idInput === "" ||
-    emailInput === "" ||
-    numInput === ""
-  ) {
+  if (!nameInput || !idInput || !emailInput || !numInput) {
     validationIcon.setAttribute("name", "alert-circle-outline");
-    validationMsg.innerHTML = "All feiilds are mendatory";
-
+    validationMsg.textContent = "All fields are mandatory";
     return;
   } else {
     validationIcon.setAttribute("name", "checkmark-circle-outline");
     validationIcon.style.color = "green";
-    validationMsg.innerHTML = "Form submitted Successfully";
+    validationMsg.textContent = "Form submitted successfully";
     validationMsg.style.color = "green";
   }
 
-  // creating list items ===============================
+  // Create a student object with a unique internal id
+  const student = {
+    uid: Date.now().toString(), // unique identifier
+    name: nameInput,
+    studentId: idInput,
+    email: emailInput,
+    num: numInput,
+  };
 
-  const studentsLists = document.querySelector(".students-list");
+  // Save to localStorage
+  saveStudent(student);
 
-  const registeredStudents = document.createElement("div");
-  registeredStudents.classList.add("registered-students");
+  // Display on screen
+  displayStudent(student);
 
-  const studentName = document.createElement("h4");
-  studentName.classList.add("display-name");
-  studentName.innerHTML = nameInput;
-
-  const studentId = document.createElement("h4");
-  studentId.classList.add("display-id");
-  studentId.innerHTML = idInput;
-
-  const studentEmail = document.createElement("h4");
-  studentEmail.classList.add("display-email");
-  studentEmail.innerHTML = emailInput;
-
-  const studentNum = document.createElement("h4");
-  studentNum.classList.add("display-num");
-  studentNum.innerHTML = numInput;
-
-  const deleteBtn = document.createElement("ion-icon");
-  deleteBtn.classList.add("delete-btn");
-  deleteBtn.setAttribute("name", "close-circle-outline");
-  deleteBtn.addEventListener("click", () => {
-    registeredStudents.remove();
-  });
-
-  // adding to HTML
-
-  registeredStudents.appendChild(studentName);
-  registeredStudents.appendChild(studentId);
-  registeredStudents.appendChild(studentEmail);
-  registeredStudents.appendChild(studentNum);
-  registeredStudents.appendChild(deleteBtn);
-  studentsLists.appendChild(registeredStudents);
-
-  // resetting forms ===================================
+  // Reset form ==================================================
 
   document.querySelector("#student-name").value = "";
   document.querySelector("#student-id").value = "";
   document.querySelector("#email-id").value = "";
   document.querySelector("#contact-no").value = "";
 });
+
+// Display a single student =====================================
+
+function displayStudent(student) {
+  const studentsLists = document.querySelector(".students-list");
+
+  const registeredStudents = document.createElement("div");
+  registeredStudents.classList.add("registered-students");
+  registeredStudents.setAttribute("data-uid", student.uid); // store unique id
+
+  const studentName = document.createElement("div");
+  studentName.classList.add("display-name");
+  studentName.innerHTML = student.name;
+
+  const studentId = document.createElement("div");
+  studentId.classList.add("display-id");
+  studentId.innerHTML = student.studentId;
+
+  const studentEmail = document.createElement("div");
+  studentEmail.classList.add("display-email");
+  studentEmail.innerHTML = student.email;
+
+  const studentNum = document.createElement("div");
+  studentNum.classList.add("display-num");
+  studentNum.innerHTML = student.num;
+
+  const deleteBtn = document.createElement("ion-icon");
+  deleteBtn.classList.add("delete-btn");
+  deleteBtn.setAttribute("name", "close-circle-outline");
+
+  // Delete only this student
+  deleteBtn.addEventListener("click", () => {
+    const uid = registeredStudents.getAttribute("data-uid");
+    registeredStudents.remove();
+    deleteStudent(uid);
+  });
+
+  //   add to HTML ===============================
+  registeredStudents.append(
+    studentName,
+    studentId,
+    studentEmail,
+    studentNum,
+    deleteBtn
+  );
+  studentsLists.appendChild(registeredStudents);
+}
+
+// Save student to localStorage
+function saveStudent(student) {
+  const students = JSON.parse(localStorage.getItem("students")) || [];
+  students.push(student);
+  localStorage.setItem("students", JSON.stringify(students));
+}
+
+// Delete only the target student by unique id
+function deleteStudent(uid) {
+  let students = JSON.parse(localStorage.getItem("students")) || [];
+  const updatedStudents = students.filter((student) => student.uid !== uid);
+  localStorage.setItem("students", JSON.stringify(updatedStudents));
+}
