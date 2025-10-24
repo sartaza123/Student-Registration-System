@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Titan+One&display=swap"
+      rel="stylesheet"
+    />
+    <title>Registraition</title>
+  </head>
+  <body>
+    <div id="main-container">
+      <header>
+        <h1 id="heading">Student Registration System</h1>
+      </header>
+      <!-- form section -->
+      <section class="form-section">
+        <div class="form-card">
+          <form action="submit">
+            <div class="inputs">
+              <label for="student-name">Student Name:</label>
+              <input
+                type="text"
+                id="student-name"
+                placeholder="Enter your Name"
+              />
+            </div>
+            <div class="inputs">
+              <label for="student-id">Student ID:</label>
+              <input
+                type="text"
+                id="student-id"
+                placeholder="Enter your Student ID"
+              />
+            </div>
+            <div class="inputs">
+              <label for="email-id">E-mail:</label>
+              <input
+                type="email"
+                id="email-id"
+                placeholder="Enter your E-mail"
+              />
+            </div>
+            <div class="inputs">
+              <label for="contact-no">Contact No:</label>
+              <input
+                type="tel"
+                id="contact-no"
+                placeholder="Enter your Contact Number"
+              />
+            </div>
+          </form>
+          <div class="validation">
+            <!-- validation -->
+          </div>
+          <button type="button" class="add-btn">Add</button>
+        </div>
+      </section>
+      <!-- display section -->
+      <section class="display-section">
+        <div class="display-card">
+          <div class="student-details">
+            <h3 style="width: 27%">Student Name</h3>
+            <h3 style="width: 15%">Std. ID</h3>
+            <h3 style="width: 35%">E-mail</h3>
+            <h3 style="width: 18%">Contact No.</h3>
+            <p style="width: 5%"></p>
+          </div>
+          <div class="students-list">
+            <!-- appears when add -->
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="script.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
