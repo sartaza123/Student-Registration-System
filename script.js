@@ -23,7 +23,7 @@ addBtn.addEventListener("click", function () {
   validationMsg.classList.add("validation-msg");
   validation.append(validationIcon, validationMsg);
 
-  if (!nameInput || !idInput || !emailInput || !numInput) {
+  if (!nameInput || !idInput || !emailInput || !numInput > 10) {
     validationIcon.setAttribute("name", "alert-circle-outline");
     validationMsg.textContent = "All fields are mandatory";
     return;
@@ -49,16 +49,14 @@ addBtn.addEventListener("click", function () {
   // Display on screen
   displayStudent(student);
 
-  // Reset form ==================================================
-
+  // Reset form
   document.querySelector("#student-name").value = "";
   document.querySelector("#student-id").value = "";
   document.querySelector("#email-id").value = "";
   document.querySelector("#contact-no").value = "";
 });
 
-// Display a single student =====================================
-
+// Display a single student
 function displayStudent(student) {
   const studentsLists = document.querySelector(".students-list");
 
@@ -66,22 +64,40 @@ function displayStudent(student) {
   registeredStudents.classList.add("registered-students");
   registeredStudents.setAttribute("data-uid", student.uid); // store unique id
 
-  const studentName = document.createElement("div");
+  const studentName = document.createElement("h4");
   studentName.classList.add("display-name");
-  studentName.innerHTML = student.name;
+  studentName.textContent = student.name;
 
-  const studentId = document.createElement("div");
+  const studentId = document.createElement("h4");
   studentId.classList.add("display-id");
-  studentId.innerHTML = student.studentId;
+  studentId.textContent = student.studentId;
 
-  const studentEmail = document.createElement("div");
+  const studentEmail = document.createElement("h4");
   studentEmail.classList.add("display-email");
-  studentEmail.innerHTML = student.email;
+  studentEmail.textContent = student.email;
 
-  const studentNum = document.createElement("div");
+  const studentNum = document.createElement("h4");
   studentNum.classList.add("display-num");
-  studentNum.innerHTML = student.num;
+  studentNum.textContent = student.num;
 
+  // Edit button
+  const editBtn = document.createElement("ion-icon");
+  editBtn.classList.add("edit-btn");
+  editBtn.setAttribute("name", "pencil-outline");
+
+  editBtn.addEventListener("click", () => {
+    // Fill the form with student data for editing
+    document.querySelector("#student-name").value = student.name;
+    document.querySelector("#student-id").value = student.studentId;
+    document.querySelector("#email-id").value = student.email;
+    document.querySelector("#contact-no").value = student.num;
+
+    // Remove current entry from UI and localStorage
+    registeredStudents.remove();
+    deleteStudent(student.uid);
+  });
+
+  // Delete button
   const deleteBtn = document.createElement("ion-icon");
   deleteBtn.classList.add("delete-btn");
   deleteBtn.setAttribute("name", "close-circle-outline");
@@ -93,12 +109,12 @@ function displayStudent(student) {
     deleteStudent(uid);
   });
 
-  //   add to HTML ===============================
   registeredStudents.append(
     studentName,
     studentId,
     studentEmail,
     studentNum,
+    editBtn,
     deleteBtn
   );
   studentsLists.appendChild(registeredStudents);

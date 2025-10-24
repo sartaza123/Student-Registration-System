@@ -107,7 +107,7 @@
 
 .display-card {
   margin: 6rem 5rem;
-  width: 85%;
+  width: 90%;
   padding: 20px;
   border-radius: 15px;
   background: linear-gradient(
@@ -139,29 +139,41 @@
 
 .display-name {
   font-size: 1rem;
-  width: 27%;
+  width: 24%;
   overflow-x: hidden;
 }
 .display-id {
   font-size: 1rem;
-  width: 15%;
+  width: 14%;
   overflow-x: hidden;
 }
 .display-email {
   font-size: 1rem;
-  width: 35%;
+  width: 36%;
   overflow-x: hidden;
 }
 .display-num {
   font-size: 1rem;
-  width: 18%;
+  width: 17%;
   overflow-x: hidden;
 }
 
+.edit-btn {
+  width: 4%;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.edit-btn:hover {
+  color: green;
+}
 .delete-btn {
-  width: 5%;
+  width: 4%;
   font-size: 1.5em;
   cursor: pointer;
+}
+.delete-btn:hover {
+  color: red;
 }
 
 /* =============================== RESPONSIVE STYLES  =============================== */
