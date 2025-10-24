@@ -163,3 +163,121 @@
   font-size: 1.5em;
   cursor: pointer;
 }
+
+/* =============================== RESPONSIVE STYLES  =============================== */
+
+/* Tablets (<=1024px) */
+@media (max-width: 1024px) {
+  #heading {
+    font-size: 2rem;
+  }
+
+  .form-card {
+    width: 80%;
+    padding: 2rem;
+  }
+
+  .display-card {
+    margin: 4rem 3rem;
+    width: 90%;
+  }
+
+  .display-name,
+  .display-id,
+  .display-email,
+  .display-num {
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile landscape (<=768px) */
+@media (max-width: 768px) {
+  #heading {
+    color: #000;
+  }
+  #main-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .form-section,
+  .display-section {
+    width: 100%;
+    height: auto;
+  }
+
+  .form-card {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .display-card {
+    margin: 2rem 1.5rem;
+    width: 90%;
+  }
+
+  #heading {
+    font-size: 1.8rem;
+    position: relative;
+    margin: 1rem 0;
+  }
+
+  .display-name,
+  .display-id,
+  .display-email,
+  .display-num {
+    font-size: 0.8rem;
+  }
+
+  .registered-students {
+    font-size: 0.8rem;
+  }
+
+  .add-btn {
+    width: 100%;
+  }
+}
+
+/* Mobile portrait (<=480px) */
+@media (max-width: 480px) {
+  #heading {
+    font-size: 1.5rem;
+    color: #000;
+  }
+
+  .form-card {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .inputs {
+    font-size: 1em;
+  }
+
+  .display-card {
+    margin: 1.5rem 1rem;
+    width: 95%;
+  }
+  .student-details {
+    display: none;
+  }
+
+  .display-name,
+  .display-id,
+  .display-email,
+  .display-num {
+    width: 100%;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+
+  .registered-students {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .add-btn {
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
