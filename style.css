@@ -104,3 +104,62 @@
   color: #fff;
   overflow-y: auto;
 }
+
+.display-card {
+  margin: 6rem 5rem;
+  width: 85%;
+  padding: 20px;
+  border-radius: 15px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(22, 11, 11, 0.03)
+  );
+}
+
+.student-details {
+  display: flex;
+  padding: 0 5px 10px;
+  border-bottom: 1px solid #fff;
+}
+
+.students-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.registered-students {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px 10px;
+  border-radius: 5px;
+  margin-top: 15px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.display-name {
+  font-size: 1rem;
+  width: 27%;
+  overflow-x: hidden;
+}
+.display-id {
+  font-size: 1rem;
+  width: 15%;
+  overflow-x: hidden;
+}
+.display-email {
+  font-size: 1rem;
+  width: 35%;
+  overflow-x: hidden;
+}
+.display-num {
+  font-size: 1rem;
+  width: 18%;
+  overflow-x: hidden;
+}
+
+.delete-btn {
+  width: 5%;
+  font-size: 1.5em;
+  cursor: pointer;
+}
